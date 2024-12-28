@@ -577,7 +577,7 @@ export const TaskbarAppIcon = GObject.registerClass({
         let inlineStyle = 'margin: 0;';
 
         if(SETTINGS.get_boolean('focus-highlight') && 
-           this._checkIfFocusedApp() && !this.isLauncher &&  
+           this._isFocusedWindow() && !this.isLauncher &&  
            (!this.window || isFocused) && !this._isThemeProvidingIndicator() && this._checkIfMonitorHasFocus()) {
             let focusedDotStyle = SETTINGS.get_string('dot-style-focused');
             let pos = SETTINGS.get_string('dot-position');
@@ -707,7 +707,17 @@ export const TaskbarAppIcon = GObject.registerClass({
 
         this._setIconStyle(isFocused);
 
+        const updateFocusedClassState = () => {
+            this._timeoutsHandler.add([T6, 0, () => {
+                if(isFocused) 
+                    this.add_style_class_name('focused');
+                else
+                    this.remove_style_class_name('focused');
+            }]);
+        };
+
         if(!this._isGroupApps) {
+            updateFocusedClassState();
             if (this.window && (SETTINGS.get_boolean('group-apps-underline-unfocused') || isFocused)) {
                 let align = Clutter.ActorAlign[position == DOT_POSITION.TOP || position == DOT_POSITION.LEFT ? 'START' : 'END'];
                 
@@ -730,12 +740,7 @@ export const TaskbarAppIcon = GObject.registerClass({
             
             isFocused = this._checkIfFocusedApp() && this._checkIfMonitorHasFocus();
 
-            this._timeoutsHandler.add([T6, 0, () => {
-                if(isFocused) 
-                    this.add_style_class_name('focused');
-                else
-                    this.remove_style_class_name('focused');
-            }]);
+            updateFocusedClassState();
 
             if(this._focusedIsWide) {
                 newFocusedDotsSize = (isFocused && this._nWindows > 0) ? this._containerSize : 0;
@@ -789,15 +794,11 @@ export const TaskbarAppIcon = GObject.registerClass({
 
     _isFocusedWindow() {
         let focusedWindow = global.display.focus_window;
-        
-        while (focusedWindow) {
-            if (focusedWindow == this.window) {
-                return true;
-            }
-
-            focusedWindow = focusedWindow.get_transient_for();
+        if (focusedWindow == this.window) {
+            return true;
         }
-
+        // todo: check if child window is visible in taskbar
+        // if not then lets highlight this window
         return false;
     }
 
@@ -1248,13 +1249,7 @@ export const TaskbarAppIcon = GObject.registerClass({
     }
 
     updateNumberOverlay(bin, fixedSize) {
-        // We apply an overall scale factor that might come from a HiDPI monitor.
-        // Clutter dimensions are in physical pixels, but CSS measures are in logical
-        // pixels, so make sure to consider the scale.
-        // Set the font size to something smaller than the whole icon so it is
-        // still visible. The border radius is large to make the shape circular
-        let [minWidth, natWidth] = this._dtpIconContainer.get_preferred_width(-1);
-        let font_size =  Math.round(Math.max(12, 0.3 * natWidth) / Utils.getScaleFactor());
+        let font_size = 14;
         let size = Math.round(font_size * 1.3);
         let label = bin.child;
         let style = 'font-size: ' + font_size + 'px;' +
@@ -1264,7 +1259,7 @@ export const TaskbarAppIcon = GObject.registerClass({
         if (fixedSize || label.get_text().length == 1) {
             style += 'width: ' + size + 'px;';
         } else {
-            style += 'padding: 0 2px;';
+            style += 'padding: 0 4px;';
         }
 
         bin.x = 2;

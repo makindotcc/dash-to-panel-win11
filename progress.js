@@ -351,23 +351,10 @@ export const ProgressIndicator = class {
     }
 
     _notificationBadgeCountToText(count) {
-        if (count <= 9999) {
+        if (count <= 99) {
             return count.toString();
-        } else if (count < 1e5) {
-            let thousands = count / 1e3;
-            return thousands.toFixed(1).toString() + "k";
-        } else if (count < 1e6) {
-            let thousands = count / 1e3;
-            return thousands.toFixed(0).toString() + "k";
-        } else if (count < 1e8) {
-            let millions = count / 1e6;
-            return millions.toFixed(1).toString() + "M";
-        } else if (count < 1e9) {
-            let millions = count / 1e6;
-            return millions.toFixed(0).toString() + "M";
         } else {
-            let billions = count / 1e9;
-            return billions.toFixed(1).toString() + "B";
+            return "99+";
         }
     }
 

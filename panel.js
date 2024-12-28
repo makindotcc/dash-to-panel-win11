@@ -593,7 +593,7 @@ export const Panel = GObject.registerClass({
         this.geom = this.getGeometry();
         this._setPanelPosition();
         this.taskbar.resetAppIcons(true);
-        this.dynamicTransparency.updateExternalStyle();
+        this.dynamicTransparency.updateExternalStyle(); 
 
         if (this.intellihide && this.intellihide.enabled) {
             this.intellihide.reset();
@@ -619,7 +619,7 @@ export const Panel = GObject.registerClass({
         let x = 0, y = 0;
         let w = 0, h = 0;
 
-        const panelSize = PanelSettings.getPanelSize(SETTINGS, this.monitor.index);
+        const panelSize = PanelSettings.getPanelSize(SETTINGS, this.monitor.index) + 8;
         this.dtpSize = panelSize * scaleFactor;
 
         if (SETTINGS.get_boolean('stockgs-keep-top-panel') && Main.layoutManager.primaryMonitor == this.monitor) {

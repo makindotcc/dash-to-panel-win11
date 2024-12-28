@@ -21,7 +21,7 @@
  * Some code was also adapted from the upstream Gnome Shell source code.
  */
 
-#dashtopanelTaskbar .dash-item-container > StWidget,
+#dashtopanelTaskbar .dash-item-container>StWidget,
 .dashtopanelMainPanel .dash-item-container .show-apps {
 	margin: 0;
 	padding: 0;
@@ -41,7 +41,8 @@
 #dashtopanelScrollview .overview-tile:hover .dtp-container,
 #dashtopanelScrollview .overview-tile:focus .dtp-container,
 .dashtopanelMainPanel .dash-item-container .show-apps:hover {
-	background-color: rgba(238, 238, 238, 0.1);
+	background-color: rgba(201, 201, 201, 0.12);
+	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
 }
 
 .dashtopanelMainPanel .dash-item-container .show-apps .overview-icon {
@@ -81,10 +82,10 @@
 	margin: 0;
 }
 
-.dashtopanelMainPanel.vertical .panel-button > *,
-.dashtopanelMainPanel.vertical .panel-button.vertical > *,
+.dashtopanelMainPanel.vertical .panel-button>*,
+.dashtopanelMainPanel.vertical .panel-button.vertical>*,
 .dashtopanelMainPanel.vertical .panel-button.vertical .system-status-icon,
-.dashtopanelMainPanel.vertical .panel-button.clock-display > *,
+.dashtopanelMainPanel.vertical .panel-button.clock-display>*,
 .dashtopanelMainPanel.vertical .panel-button.clock-display .clock {
 	padding: 8px 0;
 }
@@ -118,7 +119,8 @@
 	margin-bottom: 0;
 }
 
-#panel #panelLeft, #panel #panelCenter {
+#panel #panelLeft,
+#panel #panelCenter {
 	spacing: 0px;
 }
 
@@ -132,16 +134,19 @@
 
 #dashtopanelScrollview .badge {
 	color: rgba(255, 255, 255, 1);
-	font-weight: bold;
-	text-align: center;
 }
 
 #dashtopanelScrollview .number-overlay {
-	background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 #dashtopanelScrollview .notification-badge {
-	background-color: rgba(255,0,0,0.8);
+	background-color: rgb(255, 18, 30);
+	border-radius: 100px;
+	font-weight: normal;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
 }
 
 #dashtopanelScrollview .progress-bar {
@@ -152,4 +157,21 @@
 
 .symbolic-icon-style {
 	-st-icon-style: symbolic;
+}
+
+.dtp-container {
+	margin: 4px 4px;
+	border-radius: 6px;
+	transition: ease-in-out;
+	transition-duration: 200ms;
+}
+
+/* focused app highligh round */
+.dtp-container > :first-child {
+	border-radius: 6px;
+}
+
+.focused {
+	border-radius: 0;
+	box-shadow: rgba(34, 29, 29, 0.3) 0px 5px 2px -6px;
 }
