@@ -1249,7 +1249,7 @@ export const TaskbarAppIcon = GObject.registerClass({
     }
 
     updateNumberOverlay(bin, fixedSize) {
-        let font_size = 14;
+        let font_size = 12;
         let size = Math.round(font_size * 1.3);
         let label = bin.child;
         let style = 'font-size: ' + font_size + 'px;' +

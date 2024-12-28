@@ -145,8 +145,6 @@
 	border-radius: 100px;
 	font-weight: normal;
 	text-align: center;
-	font-size: 14px;
-	font-weight: 600;
 }
 
 #dashtopanelScrollview .progress-bar {
@@ -174,4 +172,8 @@
 .focused {
 	border-radius: 0;
 	box-shadow: rgba(34, 29, 29, 0.3) 0px 5px 2px -6px;
+}
+
+.clock {
+	font-weight: 400;
 }
