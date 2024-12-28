@@ -34,7 +34,7 @@
 
 #dashtopanelScrollview .overview-tile .overview-label {
 	/* must match TITLE_RIGHT_PADDING in apppicons.js */
-	padding-right: 8px;
+	padding-right: 10px;
 	text-align: left;
 }
 

@@ -56,7 +56,7 @@ const T5 = 'switchWorkspaceTimeout';
 const T6 = 'displayProperIndicatorTimeout';
 
 //right padding defined for .overview-label in stylesheet.css
-const TITLE_RIGHT_PADDING = 8;
+const TITLE_RIGHT_PADDING = 10;
 const DOUBLE_CLICK_DELAY_MS = 450;
 
 let LABEL_GAP = 5;
