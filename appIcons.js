@@ -576,9 +576,10 @@ export const TaskbarAppIcon = GObject.registerClass({
     _setIconStyle(isFocused) {
         let inlineStyle = 'margin: 0;';
 
-        if(SETTINGS.get_boolean('focus-highlight') && 
-           this._isFocusedWindow() && !this.isLauncher &&  
-           (!this.window || isFocused) && !this._isThemeProvidingIndicator() && this._checkIfMonitorHasFocus()) {
+        let shouldHighlight = SETTINGS.get_boolean('focus-highlight') && 
+            this._isFocusedWindow() && !this.isLauncher &&  
+            (!this.window || isFocused) && !this._isThemeProvidingIndicator() && this._checkIfMonitorHasFocus();
+        if(shouldHighlight) {
             let focusedDotStyle = SETTINGS.get_string('dot-style-focused');
             let pos = SETTINGS.get_string('dot-position');
             let highlightMargin = this._focusedIsWide ? SETTINGS.get_int('dot-size') : 0;
@@ -610,6 +611,11 @@ export const TaskbarAppIcon = GObject.registerClass({
         
         if(this._dotsContainer.get_style() != inlineStyle) {
             this._dotsContainer.set_style(inlineStyle);
+            if (shouldHighlight) {
+                this._dotsContainer.add_style_class_name("highlighted");
+            } else {
+                this._dotsContainer.remove_style_class_name("highlighted");
+            }
         }
     }
 

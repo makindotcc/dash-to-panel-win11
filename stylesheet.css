@@ -38,11 +38,19 @@
 	text-align: left;
 }
 
-#dashtopanelScrollview .overview-tile:hover .dtp-container,
+/* #dashtopanelScrollview .overview-tile:hover .dtp-container,
 #dashtopanelScrollview .overview-tile:focus .dtp-container,
 .dashtopanelMainPanel .dash-item-container .show-apps:hover {
 	background-color: rgba(201, 201, 201, 0.12);
 	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
+	border-top: 1px solid rgba(255, 255, 255, 0.075);
+} */
+#dashtopanelScrollview .overview-tile:hover .dtp-container > :first-child {
+	background-color: rgba(201, 201, 201, 0.12);
+	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 0.075);
+	padding: 0px 1px 1px; 
 }
 
 .dashtopanelMainPanel .dash-item-container .show-apps .overview-icon {
@@ -56,7 +64,7 @@
 	background: none;
 }
 
-#dashtopanelScrollview .overview-tile:active .dtp-container {
+#dashtopanelScrollview .overview-tile:active .dtp-container > :first-child {
 	background-color: rgba(238, 238, 236, 0.18);
 }
 
@@ -158,22 +166,26 @@
 }
 
 .dtp-container {
-	margin: 4px 4px;
+	margin: 3px;
 	border-radius: 6px;
-	transition: ease-in-out;
+	transition: ease-in-out all;
 	transition-duration: 200ms;
 }
 
 /* focused app highligh round */
-.dtp-container > :first-child {
+#dashtopanelTaskbar .dtp-container > :first-child {
 	border-radius: 6px;
+	border: 1px solid transparent;
 }
 
 .focused {
-	border-radius: 0;
 	box-shadow: rgba(34, 29, 29, 0.3) 0px 5px 2px -6px;
 }
 
-.clock {
+#dashtopanelTaskbar .clock {
 	font-weight: 400;
+}
+
+#dashtopanelTaskbar .highlighted {
+	border: 1px solid rgba(255, 255, 255, 0.075);
 }
