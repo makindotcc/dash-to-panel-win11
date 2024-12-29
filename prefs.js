@@ -796,9 +796,6 @@ const Preferences = class {
                 rgba.parse(this._settings.get_string('focus-highlight-color'));
                 this._builder.get_object('focus_highlight_color_colorbutton').set_rgba(rgba);
 
-                this._settings.set_value('focus-highlight-opacity', this._settings.get_default_value('focus-highlight-opacity'));
-                this._builder.get_object('focus_highlight_opacity_spinbutton').set_value(this._settings.get_int('focus-highlight-opacity'));
-
                 for (let i = 1; i <= MAX_WINDOW_INDICATOR; i++) {
                     this._settings.set_value('dot-color-' + i, this._settings.get_default_value('dot-color-' + i));
                     rgba = new Gdk.RGBA();
@@ -815,7 +812,6 @@ const Preferences = class {
                 this._builder.get_object('dot_size_spinbutton').set_value(this._settings.get_int('dot-size'));
 
                 this._settings.set_value('focus-highlight', this._settings.get_default_value('focus-highlight'));
-                this._settings.set_value('focus-highlight-dominant', this._settings.get_default_value('focus-highlight-dominant'));
             });
 
             this._settings.bind('dot-color-dominant',
@@ -877,32 +873,12 @@ const Preferences = class {
                     'sensitive',
                     Gio.SettingsBindFlags.DEFAULT);
 
-            this._settings.bind('focus-highlight-dominant',
-                    this._builder.get_object('focus_highlight_dominant_switch'),
-                    'active',
-                    Gio.SettingsBindFlags.DEFAULT);
-
-            this._settings.bind('focus-highlight-dominant',
-                    this._builder.get_object('focus_highlight_color_label'),
-                    'sensitive',
-                    Gio.SettingsBindFlags.INVERT_BOOLEAN);
-
-            this._settings.bind('focus-highlight-dominant',
-                    this._builder.get_object('focus_highlight_color_colorbutton'),
-                    'sensitive',
-                    Gio.SettingsBindFlags.INVERT_BOOLEAN);
-
-
             (function() {
                 let rgba = new Gdk.RGBA();
                 rgba.parse(this._settings.get_string('focus-highlight-color'));
                 this._builder.get_object('focus_highlight_color_colorbutton').set_rgba(rgba);
             }).apply(this);
 
-            this._builder.get_object('focus_highlight_opacity_spinbutton').set_value(this._settings.get_int('focus-highlight-opacity'));
-            this._builder.get_object('focus_highlight_opacity_spinbutton').connect('value-changed', (widget) => {
-                this._settings.set_int('focus-highlight-opacity', widget.get_value());
-            });
 
             this._builder.get_object('dot_size_spinbutton').set_value(this._settings.get_int('dot-size'));
             this._builder.get_object('dot_size_spinbutton').connect('value-changed', (widget) => {

@@ -246,9 +246,7 @@ export const TaskbarAppIcon = GObject.registerClass({
             SETTINGS.connect('changed::dot-color-unfocused-3', this._settingsChangeRefresh.bind(this)),
             SETTINGS.connect('changed::dot-color-unfocused-4', this._settingsChangeRefresh.bind(this)),
             SETTINGS.connect('changed::focus-highlight', this._settingsChangeRefresh.bind(this)),
-            SETTINGS.connect('changed::focus-highlight-dominant', this._settingsChangeRefresh.bind(this)),
             SETTINGS.connect('changed::focus-highlight-color', this._settingsChangeRefresh.bind(this)),
-            SETTINGS.connect('changed::focus-highlight-opacity', this._settingsChangeRefresh.bind(this)),
             SETTINGS.connect('changed::group-apps-label-font-size', this._updateWindowTitleStyle.bind(this)),
             SETTINGS.connect('changed::group-apps-label-font-weight', this._updateWindowTitleStyle.bind(this)),
             SETTINGS.connect('changed::group-apps-label-font-color', this._updateWindowTitleStyle.bind(this)),
@@ -604,18 +602,16 @@ export const TaskbarAppIcon = GObject.registerClass({
                                    "background-size: " + backgroundSize;
                 }
             }
-
-            let highlightColor = this._getFocusHighlightColor();
-            inlineStyle += "background-color: " + cssHexTocssRgba(highlightColor, SETTINGS.get_int('focus-highlight-opacity') * 0.01);
         }
         
         if(this._dotsContainer.get_style() != inlineStyle) {
             this._dotsContainer.set_style(inlineStyle);
-            if (shouldHighlight) {
-                this._dotsContainer.add_style_class_name("highlighted");
-            } else {
-                this._dotsContainer.remove_style_class_name("highlighted");
-            }
+        }
+        
+        if (shouldHighlight) {
+            this._dotsContainer.add_style_class_name("highlighted");
+        } else {
+            this._dotsContainer.remove_style_class_name("highlighted");
         }
     }
 
@@ -1088,15 +1084,6 @@ export const TaskbarAppIcon = GObject.registerClass({
         }
 
         return color;
-    }
-
-    _getFocusHighlightColor() {
-        if (SETTINGS.get_boolean('focus-highlight-dominant')) {
-            let dce = new Utils.DominantColorExtractor(this.app);
-            let palette = dce._getColorPalette();
-            if (palette) return palette.original;
-        }
-        return SETTINGS.get_string('focus-highlight-color');
     }
 
     _drawRunningIndicator(area, type, isFocused) {

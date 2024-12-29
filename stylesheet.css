@@ -25,7 +25,17 @@
 .dashtopanelMainPanel .dash-item-container .show-apps {
 	margin: 0;
 	padding: 0;
+	border-left: 1px transparent;
+	border-right: 1px transparent;
 }
+
+/* todo: do not shrink app hitbox doing that */
+/* .dash-item-container .show-apps {
+	border-radius: 6px;
+	border: transparent 1px;
+	margin: 4px;
+	padding: 4px;
+} */
 
 #dashtopanelScrollview .overview-tile,
 .dashtopanelMainPanel .overview-tile {
@@ -36,21 +46,6 @@
 	/* must match TITLE_RIGHT_PADDING in apppicons.js */
 	padding-right: 10px;
 	text-align: left;
-}
-
-/* #dashtopanelScrollview .overview-tile:hover .dtp-container,
-#dashtopanelScrollview .overview-tile:focus .dtp-container,
-.dashtopanelMainPanel .dash-item-container .show-apps:hover {
-	background-color: rgba(201, 201, 201, 0.12);
-	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
-	border-top: 1px solid rgba(255, 255, 255, 0.075);
-} */
-#dashtopanelScrollview .overview-tile:hover .dtp-container > :first-child {
-	background-color: rgba(201, 201, 201, 0.12);
-	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
-	border: none;
-	border-top: 1px solid rgba(255, 255, 255, 0.075);
-	padding: 0px 1px 1px; 
 }
 
 .dashtopanelMainPanel .dash-item-container .show-apps .overview-icon {
@@ -176,6 +171,8 @@
 #dashtopanelTaskbar .dtp-container > :first-child {
 	border-radius: 6px;
 	border: 1px solid transparent;
+	transition: ease-in-out all;
+	transition-duration: 200ms;
 }
 
 .focused {
@@ -186,6 +183,23 @@
 	font-weight: 400;
 }
 
-#dashtopanelTaskbar .highlighted {
+#dashtopanelScrollview .overview-tile:hover .dtp-container > :first-child,
+#dashtopanelScrollview .overview-tile:focus .dtp-container > :first-child,
+.dashtopanelMainPanel .dash-item-container .show-apps:hover {
+	background-color: rgba(201, 201, 201, 0.12);
+	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
 	border: 1px solid rgba(255, 255, 255, 0.075);
+	padding: 0px;
+}
+
+#dashtopanelTaskbar .highlighted {
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 0.075);
+	padding: 0px 1px 1px;
+	background-color: rgba(201, 201, 201, 0.12);
+}
+
+#dashtopanelTaskbar .overview-tile:hover .highlighted {
+	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
+	background-color: rgba(201, 201, 201, 0.2);
 }
