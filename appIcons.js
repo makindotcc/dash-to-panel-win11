@@ -148,8 +148,15 @@ export const TaskbarAppIcon = GObject.registerClass({
         this._isGroupApps = SETTINGS.get_boolean('group-apps');
         
         this._container = new St.Widget({ style_class: 'dtp-container', layout_manager: new Clutter.BinLayout() });
-        this._dotsContainer = new St.Widget({ layout_manager: new Clutter.BinLayout() });
-        this._dtpIconContainer = new St.Widget({ layout_manager: new Clutter.BinLayout(), style: getIconContainerStyle(panel.checkIfVertical()) });
+        this._dotsContainer = new St.Widget({ style_class: 'dtp-dots-container', layout_manager: new Clutter.BinLayout() });
+        this._dtpIconContainer = new St.Widget({ style_class: 'dtp-icon-container', layout_manager: new Clutter.BinLayout(), style: getIconContainerStyle(panel.checkIfVertical()) });
+        this._statusIndicator = new St.Widget({
+            style_class: 'dtp-status-indicator',
+            layout_manager: new Clutter.BinLayout(),
+            y_align: Clutter.ActorAlign.END,
+            y_expand: true,
+        });
+        this._dtpIconContainer.add_child(this._statusIndicator);
 
         this.remove_child(this._iconContainer);
         
@@ -609,9 +616,9 @@ export const TaskbarAppIcon = GObject.registerClass({
         }
         
         if (shouldHighlight) {
-            this._dotsContainer.add_style_class_name("highlighted");
+            this._container.add_style_class_name("highlighted");
         } else {
-            this._dotsContainer.remove_style_class_name("highlighted");
+            this._container.remove_style_class_name("highlighted");
         }
     }
 

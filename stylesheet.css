@@ -183,14 +183,14 @@
 	padding: 0;
 }
 
-#dashtopanelTaskbar .highlighted {
+#dashtopanelTaskbar .highlighted > .dtp-dots-container {
 	border: none;
 	border-top: 1px solid rgba(255, 255, 255, 0.075);
 	padding: 0px 1px 1px;
 	background-color: rgba(201, 201, 201, 0.12);
 }
 
-#dashtopanelTaskbar .overview-tile:hover .highlighted {
+#dashtopanelTaskbar .overview-tile:hover .highlighted > .dtp-dots-container {
 	box-shadow: rgba(34, 29, 29, 0.3) 0px 1px 2px 0px;
 	background-color: rgba(201, 201, 201, 0.2);
 }
@@ -211,4 +211,18 @@
 .dashtopanelMainPanel .dash-item-container .show-apps:hover .show-apps-icon {
 	background-color: rgba(201, 201, 201, 0.12);
 	border: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.dtp-status-indicator {
+	/* todo: fix animation somehow */
+	transition: ease-in-out all;
+	transition-duration: 200ms;
+	width: 5px;
+	height: 3px;
+	border-radius: 999px;
+	background-color: rgb(196, 196, 196);
+}
+
+.highlighted .dtp-status-indicator {
+	width: 15px;
 }
