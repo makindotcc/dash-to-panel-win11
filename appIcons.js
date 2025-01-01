@@ -718,10 +718,16 @@ export const TaskbarAppIcon = GObject.registerClass({
 
         const updateFocusedClassState = () => {
             this._timeoutsHandler.add([T6, 0, () => {
-                if(isFocused) 
+                if (isFocused) {
                     this.add_style_class_name('focused');
-                else
+                } else {
                     this.remove_style_class_name('focused');
+                }
+                if (this.app.state == Shell.AppState.RUNNING) {
+                    this.add_style_class_name('running');
+                } else {
+                    this.remove_style_class_name('running');
+                }
             }]);
         };
 

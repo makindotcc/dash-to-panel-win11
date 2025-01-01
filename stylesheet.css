@@ -213,7 +213,7 @@
 	border: 1px solid rgba(255, 255, 255, 0.075);
 }
 
-.dtp-status-indicator {
+.running .dtp-status-indicator {
 	/* todo: fix animation somehow */
 	transition: ease-in-out all;
 	transition-duration: 200ms;
