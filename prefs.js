@@ -519,8 +519,6 @@ const Preferences = class {
         let dialog = this._createPreferencesDialog(_('Show Applications options'), box, () =>
         {
             // restore default settings
-            this._settings.set_value('show-apps-icon-side-padding', this._settings.get_default_value('show-apps-icon-side-padding'));
-            this._builder.get_object('show_applications_side_padding_spinbutton').set_value(this._settings.get_int('show-apps-icon-side-padding'));
             this._settings.set_value('show-apps-override-escape', this._settings.get_default_value('show-apps-override-escape'));
             handleIconChange.call(this, null);
         });
@@ -1266,11 +1264,6 @@ const Preferences = class {
         });
 
         // Behavior panel
-
-        this._builder.get_object('show_applications_side_padding_spinbutton').set_value(this._settings.get_int('show-apps-icon-side-padding'));
-        this._builder.get_object('show_applications_side_padding_spinbutton').connect('value-changed', (widget) => {
-            this._settings.set_int('show-apps-icon-side-padding', widget.get_value());
-        });
 
         this._settings.bind('show-apps-override-escape',
                             this._builder.get_object('show_applications_esc_key_switch'),

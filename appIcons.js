@@ -1642,11 +1642,6 @@ export const ShowAppsIconWrapper = class extends EventEmitter {
             customIconPath = SETTINGS.get_string('show-apps-icon-file');
             this.realShowAppsIcon.icon._createIconTexture(this.realShowAppsIcon.icon.iconSize);
         });
-
-        this._changedAppIconPaddingId = SETTINGS.connect('changed::appicon-padding', () => this.setShowAppsPadding());
-        this._changedAppIconSidePaddingId = SETTINGS.connect('changed::show-apps-icon-side-padding', () => this.setShowAppsPadding());
-        
-        this.setShowAppsPadding();
     }
     
     _onButtonPress(_actor, event) {
@@ -1676,14 +1671,6 @@ export const ShowAppsIconWrapper = class extends EventEmitter {
         this._menu.sourceActor = this.actor;
         this.actor.sync_hover();
         this.emit('menu-state-changed', false);
-    }
-
-    setShowAppsPadding() {
-        let padding = getIconPadding(this.realShowAppsIcon._dtpPanel.monitor.index);
-        let sidePadding = SETTINGS.get_int('show-apps-icon-side-padding');
-        let isVertical = this.realShowAppsIcon._dtpPanel.checkIfVertical();
-
-        this.actor.set_style('padding:' + (padding + (isVertical ? sidePadding : 0)) + 'px ' + (padding + (isVertical ? 0 : sidePadding)) + 'px;');
     }
 
     createMenu() {

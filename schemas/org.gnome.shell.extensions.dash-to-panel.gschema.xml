@@ -373,11 +373,6 @@
       <summary>Custom Show Applications icon</summary>
       <description>Customize the Show Applications icon</description>
     </key>
-    <key type="i" name="show-apps-icon-side-padding">
-      <default>8</default>
-      <summary>Show Applications icon side padding</summary>
-      <description>Customize the Show Applications icon side padding</description>
-    </key>
     <key type="b" name="show-apps-override-escape">
       <default>true</default>
       <summary>Override escape key</summary>
