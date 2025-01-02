@@ -218,9 +218,9 @@
 	transition-duration: 200ms;
 	height: 4px;
 	border-radius: 999px;
-	background-color: rgb(196, 196, 196);
+	background-color: rgb(138, 138, 138);
 }
 
 .focused .dtp-status-indicator {
-	background-color: rgb(213, 213, 213);
+	background-color: rgb(192, 192, 192);
 }

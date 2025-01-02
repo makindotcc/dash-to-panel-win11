@@ -722,12 +722,12 @@ export const TaskbarAppIcon = GObject.registerClass({
                 this.remove_style_class_name('focused');
             }
             const targetWidth = this.app.state == Shell.AppState.RUNNING ?
-                (isFocused ? 15 : 5)
+                (isFocused ? 17 : 7)
                 :
                 0;
             Utils.animate(this._statusIndicator, {
                 width: targetWidth * Utils.getScaleFactor(),
-                time: 0.15,
+                time: 0.12,
                 mode: Clutter.AnimationMode.EASE_IN_OUT,
             });
         };
