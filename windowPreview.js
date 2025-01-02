@@ -994,8 +994,8 @@ export const Preview = GObject.registerClass({
     }
 
     _getBackgroundColor(offset, alpha) {
-        return 'background-color: ' + this._getRgbaColor(offset, alpha) + 
-               'transition-duration:' + this._previewMenu.panel.dynamicTransparency.animationDuration;
+        return 'background-color: ' + this._getRgbaColor(offset, alpha)
+        +  'transition-duration:' + this._previewMenu.panel.dynamicTransparency.animationDuration;
     }
 
     _getRgbaColor(offset, alpha) {

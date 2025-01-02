@@ -53,7 +53,6 @@ const T2 = 'mouseScrollTimeout';
 const T3 = 'showDotsTimeout';
 const T4 = 'overviewWindowDragEndTimeout';
 const T5 = 'switchWorkspaceTimeout';
-const T6 = 'displayProperIndicatorTimeout';
 
 //right padding defined for .overview-label in stylesheet.css
 const TITLE_RIGHT_PADDING = 10;
@@ -717,18 +716,20 @@ export const TaskbarAppIcon = GObject.registerClass({
         this._setIconStyle(isFocused);
 
         const updateFocusedClassState = () => {
-            this._timeoutsHandler.add([T6, 0, () => {
-                if (isFocused) {
-                    this.add_style_class_name('focused');
-                } else {
-                    this.remove_style_class_name('focused');
-                }
-                if (this.app.state == Shell.AppState.RUNNING) {
-                    this.add_style_class_name('running');
-                } else {
-                    this.remove_style_class_name('running');
-                }
-            }]);
+            if (isFocused) {
+                this.add_style_class_name('focused');
+            } else {
+                this.remove_style_class_name('focused');
+            }
+            const targetWidth = this.app.state == Shell.AppState.RUNNING ?
+                (isFocused ? 15 : 5)
+                :
+                0;
+            Utils.animate(this._statusIndicator, {
+                width: targetWidth * Utils.getScaleFactor(),
+                time: 0.15,
+                mode: Clutter.AnimationMode.EASE_IN_OUT,
+            });
         };
 
         if(!this._isGroupApps) {
@@ -787,6 +788,7 @@ export const TaskbarAppIcon = GObject.registerClass({
         }
     }
 
+    // todo: should be removed due to our own status indicator implementation
     _animateDotDisplay(dots, newSize, otherDots, newOtherOpacity, sizeProp, duration) {
         Utils.stopAnimations(dots)
 

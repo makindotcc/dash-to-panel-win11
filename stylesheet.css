@@ -213,16 +213,14 @@
 	border: 1px solid rgba(255, 255, 255, 0.075);
 }
 
-.running .dtp-status-indicator {
-	/* todo: fix animation somehow */
+.dtp-status-indicator {
 	transition: ease-in-out all;
 	transition-duration: 200ms;
-	width: 5px;
-	height: 3px;
+	height: 4px;
 	border-radius: 999px;
 	background-color: rgb(196, 196, 196);
 }
 
-.highlighted .dtp-status-indicator {
-	width: 15px;
+.focused .dtp-status-indicator {
+	background-color: rgb(213, 213, 213);
 }
