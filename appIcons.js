@@ -716,7 +716,7 @@ export const TaskbarAppIcon = GObject.registerClass({
         this._setIconStyle(isFocused);
 
         const updateFocusedClassState = () => {
-            if (isFocused) {
+            if (isFocused && this.app.state == Shell.AppState.RUNNING) {
                 this.add_style_class_name('focused');
             } else {
                 this.remove_style_class_name('focused');
