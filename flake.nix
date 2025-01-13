@@ -18,9 +18,9 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        id = "dash-to-panel@makindotcc.github.com";
         packages.default = pkgs.stdenv.mkDerivation {
           name = "gnome-shell-extension-dash-to-panel-win11";
+          extensionUuid = "dash-to-panel@makindotcc.github.com";
           src = ./.;
           meta = with pkgs.lib; {
             description = "A fork of dash-to-panel with a theme similar to win 11.";
