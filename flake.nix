@@ -34,6 +34,9 @@
             touch $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com/test1234.txt
             runHook postInstall
           '';
+          passthru = {
+            extensionUuid = "dash-to-panel@makindotcc.github.com";
+          };
         };
       }
     );
