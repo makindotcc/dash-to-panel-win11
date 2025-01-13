@@ -224,3 +224,7 @@
 .focused .dtp-status-indicator {
 	background-color: rgb(192, 192, 192);
 }
+
+.dashtopanelMainPanel {
+	border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
