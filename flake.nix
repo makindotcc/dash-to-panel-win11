@@ -2,7 +2,7 @@
   description = "Dash to panel with win 11 alike theme.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -17,7 +17,7 @@
       let
         pkgs = import nixpkgs { inherit system; };
       in
-      rec {
+      {
         packages.default = pkgs.stdenv.mkDerivation {
           name = "gnome-shell-extension-dash-to-panel-win11";
           extensionUuid = "dash-to-panel@makindotcc.github.com";
@@ -34,8 +34,6 @@
             runHook postInstall
           '';
         };
-
-        defaultPackage = packages.default;
       }
     );
 }
