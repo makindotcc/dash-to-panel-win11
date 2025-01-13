@@ -34,6 +34,7 @@
             runHook postInstall
           '';
         };
+        defaultPackage = self.packages.${system}.default;
       }
     );
 }
