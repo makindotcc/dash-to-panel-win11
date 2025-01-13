@@ -18,6 +18,7 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
+        id = "dash-to-panel@makindotcc.github.com";
         packages.default = pkgs.stdenv.mkDerivation {
           name = "gnome-shell-extension-dash-to-panel-win11";
           src = ./.;
@@ -30,6 +31,7 @@
             runHook preInstall
             mkdir -p $out/share/gnome-shell/extensions/
             cp -r -T . $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com
+            touch $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com/test1234.txt
             runHook postInstall
           '';
         };
