@@ -1274,7 +1274,8 @@ export const TaskbarAppIcon = GObject.registerClass({
         } else {
             style += 'padding: 0 4px;';
         }
-
+        
+        bin.x = 7 - label.get_text().length;
         bin.set_style(binStyle);
         label.set_style(style);
     }
