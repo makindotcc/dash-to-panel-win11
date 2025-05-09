@@ -1258,19 +1258,24 @@ export const TaskbarAppIcon = GObject.registerClass({
 
     updateNumberOverlay(bin, fixedSize) {
         let font_size = 12;
-        let size = Math.round(font_size * 1.3);
+        let size = Math.round(font_size * 1.25);
         let label = bin.child;
+        let binStyle = '';
         let style = 'font-size: ' + font_size + 'px;' +
-                    'border-radius: ' + this.icon.iconSize + 'px;' +
-                    'height: ' + size +'px;';
+                    'border-radius: ' + this.icon.iconSize + 'px;';
 
         if (fixedSize || label.get_text().length == 1) {
-            style += 'width: ' + size + 'px;';
+            if (label.get_text() === "1") { // visual center
+                binStyle += 'width: ' + (size - 1) + 'px;';
+            } else {
+                binStyle += 'width: ' + size + 'px;';
+            }
+            binStyle += 'padding: 0 1px;';
         } else {
             style += 'padding: 0 4px;';
         }
 
-        bin.x = 2;
+        bin.set_style(binStyle);
         label.set_style(style);
     }
 

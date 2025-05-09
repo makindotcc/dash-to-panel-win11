@@ -296,9 +296,9 @@ export const ProgressIndicator = class {
 
         this._notificationBadgeLabel = new St.Label({ style_class: 'badge' });
         this._notificationBadgeBin = new St.Bin({
-            child: this._notificationBadgeLabel, y: 2, x: 2
+            child: this._notificationBadgeLabel, y: 3, x: 6
         });
-        this._notificationBadgeLabel.add_style_class_name('notification-badge');
+        this._notificationBadgeBin.add_style_class_name('notification-badge');
         this._notificationBadgeCount = 0;
         this._notificationBadgeBin.hide();
 
@@ -347,7 +347,7 @@ export const ProgressIndicator = class {
 
     updateNotificationBadge() {
         this._source.updateNumberOverlay(this._notificationBadgeBin);
-        this._notificationBadgeLabel.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
+        this._notificationBadgeLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
     }
 
     _notificationBadgeCountToText(count) {
