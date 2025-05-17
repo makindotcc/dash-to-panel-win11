@@ -213,7 +213,7 @@ export const Taskbar = class extends EventEmitter {
 
         let isVertical = panel.checkIfVertical();
 
-        this._box = new St.BoxLayout({ vertical: isVertical,
+        this._box = Utils.createBoxLayout({ vertical: isVertical,
                                        clip_to_allocation: false,
                                        x_align: Clutter.ActorAlign.START,
                                        y_align: Clutter.ActorAlign.START });

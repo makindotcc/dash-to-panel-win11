@@ -86,7 +86,7 @@ export const PreviewMenu = GObject.registerClass({
             x_align: Clutter.ActorAlign[geom.position != St.Side.RIGHT ? 'START' : 'END'],
             y_align: Clutter.ActorAlign[geom.position != St.Side.BOTTOM ? 'START' : 'END']
         });
-        this._box = new St.BoxLayout({ vertical: this.isVertical });
+        this._box = Utils.createBoxLayout({ vertical: this.isVertical });
         this._scrollView = new St.ScrollView({
             name: 'dashtopanelPreviewScrollview',
             hscrollbar_policy: St.PolicyType.NEVER,
